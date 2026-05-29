@@ -260,4 +260,4 @@ Os SLAs são medidos pelo sistema de chamados (Azure DevOps) a partir do timesta
 1. **Política de carga danificada:** O FAQ Item 38 descreve um processo, mas não existe documento formal (POL ou PROC) sobre tratamento de carga danificada em trânsito. A informação existe apenas no FAQ informal.
 2. **Seguro de carga:** O FAQ Item 22 menciona seguro de carga com percentuais, mas não há documento formal na base sobre isso.
 3. **Frete padrão (abaixo de 500kg):** A PROC-042 só cobre frete especial (acima de 500kg). Não há documento na amostra que cubra a tabela de fretes padrão.
-4. **Processo de escalação para Gestão de Riscos:** A POL-001 menciona o ramal 4500, mas não há procedimento documentado sobre o que a Gestão de Riscos faz com cargas perigosas devolvidas.
+4. **Processo de escalação para Gestão de Riscos:** A POL-001 menciona o ramal 4500, mas não há procedimento documentado sobre o que a Gestão de Riscos faz com cargas perigosas devolvidas. 
