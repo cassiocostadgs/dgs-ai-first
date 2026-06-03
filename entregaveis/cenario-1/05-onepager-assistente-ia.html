@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistente de IA NovaTech — One-Pager</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #f4f6fa;
+    color: #1a1a2e;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .page {
+    background: #fff;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm 14mm 12mm 14mm;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header h1 { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
+  .header p { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+  .header-badge {
+    background: #e94560;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* FLOW */
+  .section-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #0f3460;
+    margin-bottom: 6px;
+  }
+
+  .flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    background: #f8f9fc;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid #e2e8f0;
+  }
+  .flow-step {
+    flex: 1;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+    position: relative;
+  }
+  .flow-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #0f3460;
+    font-weight: 700;
+    z-index: 2;
+  }
+  .flow-step .num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; color: #fff;
+  }
+  .step1 .num { background: #0f3460; }
+  .step2 .num { background: #e94560; }
+  .step3 .num { background: #06a77d; }
+
+  .flow-step h3 { font-size: 11px; font-weight: 700; color: #1a1a2e; }
+  .flow-step p  { font-size: 9.5px; color: #555; line-height: 1.4; }
+  .flow-step .tag {
+    font-size: 8.5px; font-weight: 600;
+    padding: 2px 7px; border-radius: 10px;
+    margin-top: 2px;
+  }
+  .step1 .tag { background: #e8eeff; color: #0f3460; }
+  .step2 .tag { background: #fff0f3; color: #e94560; }
+  .step3 .tag { background: #e6f7f2; color: #06a77d; }
+
+  .flow-alert {
+    background: #fff8e1;
+    border-left: 3px solid #f59e0b;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 9.5px;
+    color: #78500a;
+    font-weight: 500;
+  }
+  .flow-alert strong { color: #b45309; }
+
+  /* RAG BOX */
+  .rag-box {
+    background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #fff;
+  }
+  .rag-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .rag-content { flex: 1; }
+  .rag-content h3 {
+    font-size: 11px; font-weight: 800; color: #e94560;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .rag-content p {
+    font-size: 9.5px; line-height: 1.55; color: rgba(255,255,255,0.88);
+  }
+  .rag-content p strong { color: #fff; }
+  .rag-pills {
+    display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap;
+  }
+  .rag-pill {
+    font-size: 8.5px; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* CAPABILITIES GRID */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .card {
+    border-radius: 10px;
+    padding: 10px 12px;
+    border: 1.5px solid;
+  }
+  .card-green { border-color: #06a77d; background: #f0fdf8; }
+  .card-red   { border-color: #e94560; background: #fff5f7; }
+
+  .card h3 {
+    font-size: 11px; font-weight: 700;
+    margin-bottom: 7px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .card-green h3 { color: #06a77d; }
+  .card-red   h3 { color: #e94560; }
+
+  .cap-item {
+    display: flex; align-items: flex-start; gap: 6px;
+    margin-bottom: 5px; font-size: 9.5px; color: #333; line-height: 1.4;
+  }
+  .cap-item .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    flex-shrink: 0; margin-top: 4px;
+  }
+  .card-green .dot { background: #06a77d; }
+  .card-red   .dot { background: #e94560; }
+
+  /* KPIs */
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+  .kpi {
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .kpi .value { font-size: 22px; font-weight: 800; color: #e94560; line-height: 1; }
+  .kpi .label { font-size: 9px; opacity: 0.85; margin-top: 3px; line-height: 1.3; }
+  .kpi .detail { font-size: 8px; opacity: 0.6; margin-top: 4px; }
+
+  /* FOOTER */
+  .footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 6px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 8.5px; color: #999;
+  }
+  .footer strong { color: #0f3460; }
+
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>Assistente de IA · NovaTech</h1>
+      <p>Como funciona, o que entrega e como medimos o sucesso</p>
+    </div>
+    <div class="header-badge">CONFIDENCIAL</div>
+  </div>
+
+  <!-- FLOW -->
+  <div>
+    <div class="section-title">Como o assistente funciona</div>
+    <div class="flow">
+      <div class="flow-step step1">
+        <div class="num">1</div>
+        <h3>Pergunta</h3>
+        <p>Atendente digita em linguagem natural</p>
+        <span class="tag">Usuário</span>
+      </div>
+      <div class="flow-step step2">
+        <div class="num">2</div>
+        <h3>Busca na Base</h3>
+        <p>IA varre toda a documentação interna da NovaTech</p>
+        <span class="tag">Base Documental</span>
+      </div>
+      <div class="flow-step step3">
+        <div class="num">3</div>
+        <h3>Resposta + Fonte</h3>
+        <p>Resposta clara em linguagem natural com citação do documento</p>
+        <span class="tag">Rastreável</span>
+      </div>
+    </div>
+    <div class="flow-alert" style="margin-top:7px;">
+      <strong>⚠ Princípio-chave:</strong> O assistente responde <strong>apenas com base nos documentos internos da NovaTech.</strong> Documentação desatualizada ou incompleta resulta diretamente em respostas limitadas.
+    </div>
+  </div>
+
+  <!-- RAG -->
+  <div class="rag-box">
+    <div class="rag-icon">🔍</div>
+    <div class="rag-content">
+      <h3>O que é RAG — a tecnologia por trás do assistente</h3>
+      <p>
+        RAG (<em>Retrieval-Augmented Generation</em>) é a arquitetura que garante que o assistente <strong>nunca responda de cabeça</strong>.
+        Antes de formular qualquer resposta, ele faz uma busca nos documentos da NovaTech e usa o que encontrar como base.
+        É como se o modelo de IA fosse um redator muito competente, mas que <strong>só escreve citando fontes que você mesmo forneceu</strong> —
+        sem inventar, sem improvisar. O resultado: respostas sempre ancoradas em conteúdo real e auditável.
+      </p>
+      <div class="rag-pills">
+        <span class="rag-pill">Busca primeiro</span>
+        <span class="rag-pill">Responde depois</span>
+        <span class="rag-pill">Sempre com fonte</span>
+        <span class="rag-pill">Zero alucinação sobre dados internos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPABILITIES -->
+  <div>
+    <div class="section-title">Capacidades</div>
+    <div class="two-col">
+      <div class="card card-green">
+        <h3>✓ O que faz muito bem</h3>
+        <div class="cap-item"><div class="dot"></div><span><strong>Busca instantânea</strong> em toda a base documental simultaneamente</span></div>
+        <div class="cap-item"><div class="dot"></div><span><strong>Linguagem natural</strong> — sem precisar de palavras-chave exatas</span></div>
+        <div class="cap-item"><div class="dot"></div><span><strong>Rastreabilidade</strong> — toda resposta cita o documento de origem</span></div>
+        <div class="cap-item"><div class="dot"></div><span><strong>Disponível 24/7</strong> sem fila e sem variação de qualidade</span></div>
+        <div class="cap-item"><div class="dot"></div><span><strong>Padronização</strong> — todos recebem a mesma informação correta</span></div>
+      </div>
+      <div class="card card-red">
+        <h3>✗ O que não faz</h3>
+        <div class="cap-item"><div class="dot"></div><span><strong>Não inventa</strong> — se não está na base, informa que não encontrou</span></div>
+        <div class="cap-item"><div class="dot"></div><span><strong>Não acessa internet</strong> — especialista nos dados da NovaTech</span></div>
+        <div class="cap-item"><div class="dot"></div><span><strong>Não toma decisões</strong> — apoia o atendente, não o substitui</span></div>
+        <div class="cap-item"><div class="dot"></div><span><strong>Não compensa docs ruins</strong> — qualidade da base = qualidade da IA</span></div>
+        <div class="cap-item"><div class="dot"></div><span><strong>Não tem 100% de certeza</strong> — casos críticos requerem validação humana</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div>
+    <div class="section-title">Critérios de sucesso — 3 meses</div>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="value">≥90%</div>
+        <div class="label">Respostas com fonte verificável</div>
+        <div class="detail">Medido via log automático da plataforma</div>
+      </div>
+      <div class="kpi">
+        <div class="value">≥40%</div>
+        <div class="label">Redução no tempo de busca manual</div>
+        <div class="detail">Baseline no mês 1 · pesquisa com equipe</div>
+      </div>
+      <div class="kpi">
+        <div class="value">≥70%</div>
+        <div class="label">Adoção da equipe de atendimento</div>
+        <div class="detail">Usando ≥5x/semana no 3º mês · analytics</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Projeto: <strong>Assistente de IA NovaTech</strong> · Versão 1.0 · Junho 2026</span>
+    <span>CONFIDENCIAL — Uso interno</span>
+  </div>
+
+</div>
+</body>
+</html>
