@@ -5,575 +5,384 @@
 <title>Plano de Discovery — NovaTech</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family:'Inter',Arial,sans-serif; background:#f4f6fa; color:#1a1a2e; }
 
-  body {
-    font-family: 'Inter', Arial, sans-serif;
-    background: #f4f6fa;
-    color: #1a1a2e;
-  }
-
-  /* ─── PAGE ─── */
   .page {
-    background: #fff;
-    width: 210mm;
-    min-height: 297mm;
-    padding: 12mm 13mm 11mm 13mm;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
+    background:#fff;
+    width:210mm; height:297mm;
+    padding:9mm 11mm 8mm 11mm;
+    margin:0 auto;
+    display:flex; flex-direction:column; gap:6px;
+    overflow:hidden;
   }
 
-  @media print {
-    body { background: #fff; }
-    .page { box-shadow: none; page-break-after: always; }
-    .page:last-child { page-break-after: auto; }
-  }
+  @page  { size:A4; margin:0; }
+  @media print { body{background:#fff;} .page{box-shadow:none;} }
 
-  /* ─── HEADER ─── */
+  /* ── HEADER ── */
   .header {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
-    color: #fff;
-    border-radius: 10px;
-    padding: 13px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    background:linear-gradient(135deg,#1a1a2e 0%,#16213e 55%,#0f3460 100%);
+    color:#fff; border-radius:9px; padding:9px 15px;
+    display:flex; align-items:center; justify-content:space-between; flex-shrink:0;
   }
-  .header h1 { font-size: 17px; font-weight: 800; letter-spacing: -0.3px; }
-  .header p  { font-size: 10px; opacity: 0.72; margin-top: 2px; }
-  .header-badges { display: flex; gap: 6px; flex-direction: column; align-items: flex-end; }
-  .badge {
-    font-size: 9px; font-weight: 700;
-    padding: 3px 9px; border-radius: 20px;
-    white-space: nowrap;
-  }
-  .badge-red   { background: #e94560; color: #fff; }
-  .badge-blue  { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+  .header h1 { font-size:15px; font-weight:800; letter-spacing:-.3px; }
+  .header p  { font-size:8.5px; opacity:.72; margin-top:1px; }
+  .hbadges   { display:flex; gap:5px; align-items:center; }
+  .badge     { font-size:8px; font-weight:700; padding:2px 8px; border-radius:20px; white-space:nowrap; }
+  .badge-red { background:#e94560; color:#fff; }
+  .badge-blue{ background:rgba(255,255,255,.15); color:#fff; border:1px solid rgba(255,255,255,.3); }
 
-  /* ─── SECTION TITLE ─── */
-  .section-title {
-    font-size: 9.5px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 1px;
-    color: #0f3460; margin-bottom: 6px;
-  }
+  /* ── SECTION LABEL ── */
+  .sec { font-size:8px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#0f3460; margin-bottom:4px; display:flex; align-items:center; gap:5px; }
+  .sec::before { content:''; display:block; width:3px; height:11px; background:#e94560; border-radius:2px; }
 
-  /* ─── INTENT OVERVIEW ─── */
-  .intent-bar {
-    background: #f0f4ff;
-    border: 1.5px solid #c7d5f8;
-    border-radius: 8px;
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  /* ── INTENT BAR ── */
+  .intent {
+    background:#f0f4ff; border:1.5px solid #c7d5f8; border-radius:8px;
+    padding:6px 11px; display:flex; align-items:center; gap:9px; flex-shrink:0;
   }
-  .intent-bar .icon { font-size: 20px; flex-shrink: 0; }
-  .intent-bar p { font-size: 9.5px; color: #2d3a6e; line-height: 1.5; }
-  .intent-bar p strong { color: #0f3460; }
+  .intent .icon { font-size:15px; flex-shrink:0; }
+  .intent p { font-size:8.5px; color:#2d3a6e; line-height:1.5; }
+  .intent p strong { color:#0f3460; }
 
-  /* ─── AI VS HUMAN ─── */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  /* ── ROLE CARDS ── */
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:7px; flex-shrink:0; }
 
-  .role-card {
-    border-radius: 9px;
-    padding: 9px 11px;
-    border: 1.5px solid;
-  }
-  .role-ai    { border-color: #0f3460; background: #f0f4ff; }
-  .role-human { border-color: #06a77d; background: #f0fdf8; }
+  .rcard { border-radius:8px; padding:7px 10px; border:1.5px solid; }
+  .rai   { border-color:#0f3460; background:linear-gradient(135deg,#f0f4ff,#e8eeff); }
+  .rhum  { border-color:#06a77d; background:linear-gradient(135deg,#f0fdf8,#e6f7f2); }
 
-  .role-card h3 {
-    font-size: 10.5px; font-weight: 800;
-    margin-bottom: 7px;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .role-ai h3    { color: #0f3460; }
-  .role-human h3 { color: #06a77d; }
+  .rcard h3 { font-size:9px; font-weight:800; margin-bottom:5px; display:flex; align-items:center; gap:5px; }
+  .rai h3   { color:#0f3460; }
+  .rhum h3  { color:#047857; }
 
-  .role-pill {
-    font-size: 8px; font-weight: 700;
-    padding: 2px 7px; border-radius: 10px;
-  }
-  .role-ai .role-pill    { background: #0f3460; color: #fff; }
-  .role-human .role-pill { background: #06a77d; color: #fff; }
+  .rpill { font-size:7px; font-weight:700; padding:2px 7px; border-radius:8px; }
+  .rai  .rpill { background:#0f3460; color:#fff; }
+  .rhum .rpill { background:#06a77d; color:#fff; }
 
-  .role-item {
-    display: flex; align-items: flex-start; gap: 6px;
-    margin-bottom: 5px; font-size: 9px; color: #333; line-height: 1.45;
-  }
-  .role-item .dot {
-    width: 5px; height: 5px; border-radius: 50%;
-    flex-shrink: 0; margin-top: 4px;
-  }
-  .role-ai    .dot { background: #0f3460; }
-  .role-human .dot { background: #06a77d; }
+  .ri { display:flex; align-items:flex-start; gap:5px; margin-bottom:3px; font-size:8px; color:#374151; line-height:1.4; }
+  .ri .d { width:5px; height:5px; border-radius:50%; flex-shrink:0; margin-top:4px; }
+  .rai .d  { background:#0f3460; }
+  .rhum .d { background:#06a77d; }
 
-  /* ─── DEPENDENCY ARROW ─── */
-  .dep-arrow {
-    display: flex; align-items: center; gap: 10px;
-    background: #fff8e1; border: 1.5px solid #f59e0b;
-    border-radius: 8px; padding: 7px 12px;
-    font-size: 9px; color: #78500a; font-weight: 500;
+  /* ── DEPENDENCY ARROW ── */
+  .dep {
+    background:#fffbeb; border:1.5px solid #f59e0b; border-radius:7px;
+    padding:5px 11px; font-size:8px; color:#78500a;
+    display:flex; align-items:center; gap:8px; flex-shrink:0;
   }
-  .dep-arrow .arr { font-size: 16px; color: #f59e0b; font-weight: 800; }
-  .dep-arrow strong { color: #b45309; }
+  .dep .arr { font-size:13px; color:#f59e0b; font-weight:800; flex-shrink:0; }
+  .dep strong { color:#b45309; }
 
-  /* ─── PREREQUISITES TABLE ─── */
-  .prereq-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 9px;
-  }
-  .prereq-table thead tr {
-    background: #1a1a2e;
-    color: #fff;
-  }
-  .prereq-table th {
-    padding: 6px 8px;
-    text-align: left;
-    font-weight: 700;
-    font-size: 8.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .prereq-table th:first-child { border-radius: 6px 0 0 6px; }
-  .prereq-table th:last-child  { border-radius: 0 6px 6px 0; }
-  .prereq-table td {
-    padding: 5px 8px;
-    border-bottom: 1px solid #e8ecf4;
-    vertical-align: top;
-    line-height: 1.4;
-  }
-  .prereq-table tr:last-child td { border-bottom: none; }
-  .prereq-table tr:nth-child(even) td { background: #f8f9fc; }
+  /* ── SCHEDULE TABLE ── */
+  .st { width:100%; border-collapse:collapse; font-size:8px; }
 
-  .tag-tecnico  { background: #e8eeff; color: #0f3460; }
-  .tag-pessoas  { background: #e6f7f2; color: #06a77d; }
-  .tag-dados    { background: #fff0f3; color: #e94560; }
-  .tag-decisao  { background: #fff8e1; color: #b45309; }
-  .type-tag {
-    font-size: 7.5px; font-weight: 700;
-    padding: 2px 6px; border-radius: 8px;
-    display: inline-block;
+  .st thead tr { background:#f1f5fe; }
+  .st th {
+    padding:5px 7px; text-align:left; font-weight:700;
+    font-size:7.5px; text-transform:uppercase; letter-spacing:.4px; color:#0f3460;
   }
-  .critical-day {
-    font-weight: 700; color: #e94560;
+  .st th:first-child { border-radius:6px 0 0 6px; }
+  .st th:last-child  { border-radius:0 6px 6px 0; }
+  .st td { padding:4px 7px; border-bottom:1px solid #eef0f6; vertical-align:middle; line-height:1.4; }
+  .st tr:last-child td { border-bottom:none; }
+
+  /* week headers */
+  .wh td { font-size:8.5px; font-weight:800; padding:5px 9px; border-bottom:none !important; letter-spacing:.2px; }
+  .wh1 td { background:#0f3460; color:#fff; }
+  .wh2 td { background:#06a77d; color:#fff; }
+  .wh1 td:first-child,.wh2 td:first-child { border-radius:6px 0 0 6px; }
+  .wh1 td:last-child, .wh2 td:last-child  { border-radius:0 6px 6px 0; }
+
+  .row-odd  td { background:#fff; }
+  .row-even td { background:#f8fafc; }
+
+  /* handoff row */
+  .row-handoff td { background:#fffbeb !important; }
+
+  .pai  { display:inline-block; background:#0f3460; color:#fff; font-size:7px; font-weight:700; padding:1px 5px; border-radius:7px; white-space:nowrap; }
+  .phum { display:inline-block; background:#06a77d; color:#fff; font-size:7px; font-weight:700; padding:1px 5px; border-radius:7px; white-space:nowrap; }
+  .pboth{ display:inline-block; background:#f59e0b; color:#fff; font-size:7px; font-weight:700; padding:1px 5px; border-radius:7px; white-space:nowrap; }
+
+  .deliv       { font-weight:600; color:#374151; }
+  .deliv-key   { font-weight:800; color:#0f3460; }
+  .deliv-final { font-weight:800; color:#047857; }
+
+  .day-label  { font-weight:700; font-size:8.5px; white-space:nowrap; }
+  .day-sub    { font-size:7px; color:#9ca3af; display:block; }
+
+  .handoff-badge {
+    display:inline-block; background:#f59e0b; color:#fff;
+    font-size:7px; font-weight:700; padding:1px 5px; border-radius:6px; margin-right:3px;
   }
 
-  /* ─── FOOTER ─── */
+  /* ── PREREQUISITES BY WEEK ── */
+  .prereq-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex-shrink:0; }
+
+  .pcard { border-radius:8px; overflow:hidden; border:1.5px solid; }
+  .pcard-s1 { border-color:#0f3460; }
+  .pcard-s2 { border-color:#06a77d; }
+
+  .pcard-header {
+    padding:5px 10px; font-size:8px; font-weight:800;
+    text-transform:uppercase; letter-spacing:.5px;
+    display:flex; align-items:center; gap:5px;
+  }
+  .pcard-s1 .pcard-header { background:#0f3460; color:#fff; }
+  .pcard-s2 .pcard-header { background:#06a77d; color:#fff; }
+
+  .pt { width:100%; border-collapse:collapse; font-size:7.5px; }
+  .pt td { padding:3.5px 8px; border-bottom:1px solid #eef0f6; vertical-align:top; line-height:1.4; }
+  .pt tr:last-child td { border-bottom:none; }
+  .pt tr:nth-child(even) td { background:#f8fafc; }
+
+  .ttag { font-size:7px; font-weight:700; padding:1px 5px; border-radius:6px; display:inline-block; white-space:nowrap; }
+  .t-tec  { background:#e8eeff; color:#0f3460; }
+  .t-pess { background:#e6f7f2; color:#047857; }
+  .t-dados{ background:#fff0f3; color:#e94560; }
+  .t-dec  { background:#fff8e1; color:#b45309; }
+  .crit   { font-weight:700; color:#e94560; }
+
+  /* ── FOOTER ── */
   .footer {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 5px;
-    border-top: 1px solid #e2e8f0;
-    font-size: 8px; color: #aaa;
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:4px; border-top:1px solid #e5e7eb;
+    font-size:7.5px; color:#9ca3af; flex-shrink:0;
   }
-  .footer strong { color: #0f3460; }
-
-  /* ─── PAGE 2: SCHEDULE ─── */
-  .sched-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 8.5px;
-  }
-  .sched-table th {
-    padding: 6px 7px;
-    text-align: left;
-    font-weight: 700;
-    font-size: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .sched-table td {
-    padding: 5px 7px;
-    border-bottom: 1px solid #e8ecf4;
-    vertical-align: middle;
-    line-height: 1.4;
-  }
-  .sched-table tr:last-child td { border-bottom: none; }
-
-  .week-header td {
-    font-size: 10px; font-weight: 800;
-    padding: 7px 10px;
-    letter-spacing: 0.3px;
-    border-bottom: none !important;
-  }
-  .week1-header { background: #0f3460; color: #fff; }
-  .week2-header { background: #06a77d; color: #fff; }
-  .week1-header td:first-child { border-radius: 6px 0 0 6px; }
-  .week1-header td:last-child  { border-radius: 0 6px 6px 0; }
-  .week2-header td:first-child { border-radius: 6px 0 0 6px; }
-  .week2-header td:last-child  { border-radius: 0 6px 6px 0; }
-
-  .sched-table thead tr {
-    background: #f0f4ff;
-  }
-  .sched-table thead th { color: #0f3460; }
-
-  .pill-ai {
-    display: inline-block;
-    background: #0f3460; color: #fff;
-    font-size: 7.5px; font-weight: 700;
-    padding: 2px 7px; border-radius: 10px;
-    white-space: nowrap;
-  }
-  .pill-human {
-    display: inline-block;
-    background: #06a77d; color: #fff;
-    font-size: 7.5px; font-weight: 700;
-    padding: 2px 7px; border-radius: 10px;
-    white-space: nowrap;
-  }
-  .pill-both {
-    display: inline-block;
-    background: #f59e0b; color: #fff;
-    font-size: 7.5px; font-weight: 700;
-    padding: 2px 7px; border-radius: 10px;
-    white-space: nowrap;
-  }
-
-  .sched-table tr.row-odd  td { background: #fff; }
-  .sched-table tr.row-even td { background: #f8fafc; }
-
-  .dep-chip {
-    display: inline-block;
-    background: #fff0f3; color: #e94560;
-    font-size: 7.5px; font-weight: 600;
-    padding: 1px 5px; border-radius: 6px;
-    border: 1px solid #f8c4ce;
-  }
-
-  .deliverable {
-    font-weight: 600; color: #1a1a2e;
-  }
-
-  .sched-note {
-    background: #f0fdf8;
-    border: 1.5px solid #06a77d;
-    border-radius: 8px;
-    padding: 7px 11px;
-    font-size: 9px;
-    color: #065f46;
-    line-height: 1.5;
-  }
-  .sched-note strong { color: #047857; }
-
-  .legend {
-    display: flex; gap: 14px; align-items: center;
-    font-size: 8.5px; color: #555;
-  }
-  .legend-item { display: flex; align-items: center; gap: 4px; }
+  .footer strong { color:#0f3460; }
 </style>
 </head>
 <body>
-
-<!-- ══════════════════ PAGE 1 ══════════════════ -->
 <div class="page">
 
-  <!-- HEADER -->
+  <!-- ── HEADER ── -->
   <div class="header">
     <div>
       <h1>Plano de Discovery · NovaTech</h1>
       <p>Modelo AI First SDLC — Fase de Intent + Discovery · 2 Semanas</p>
     </div>
-    <div class="header-badges">
+    <div class="hbadges">
       <span class="badge badge-red">CONFIDENCIAL</span>
-      <span class="badge badge-blue">Versão 1.0 · Jun 2026</span>
+      <span class="badge badge-blue">v1.0 · Jun 2026</span>
     </div>
   </div>
 
-  <!-- INTENT OVERVIEW -->
+  <!-- ── INTENT BAR ── -->
   <div>
-    <div class="section-title">Abordagem: o que é a Fase de Intent</div>
-    <div class="intent-bar">
+    <div class="sec">Fase de Intent — Abordagem</div>
+    <div class="intent">
       <div class="icon">🤖</div>
       <p>
-        Antes das entrevistas humanas, <strong>agentes de IA especializados processam automaticamente toda a base documental da NovaTech</strong>
+        Antes das entrevistas humanas, <strong>agentes de IA processam automaticamente toda a base documental da NovaTech</strong>
         (~800 PDFs/DOCX no SharePoint · ~400 páginas no Confluence · ~50 planilhas).
-        O objetivo é gerar um <strong>mapa priorizado de contexto, gaps e contradições</strong> que direciona e enriquece o trabalho dos consultores — transformando o Discovery em um processo mais preciso, rápido e orientado por dados reais.
+        O resultado é um <strong>Priority Map de gaps, contradições e temas críticos</strong> que direciona e enriquece o Discovery humano — tornando-o mais preciso e orientado por dados reais.
       </p>
     </div>
   </div>
 
-  <!-- AI vs HUMAN -->
+  <!-- ── ROLE CARDS ── -->
   <div>
-    <div class="section-title">Plano de Atividades — IA vs. Humano</div>
+    <div class="sec">Plano de Atividades — Agente IA vs. Time Humano</div>
     <div class="two-col">
-      <div class="role-card role-ai">
-        <h3><span class="role-pill">AGENTE IA</span> Semana 1 · Fase Intent</h3>
-        <div class="role-item"><div class="dot"></div><span><strong>Ingestão e catalogação</strong> de 1.250+ documentos das três fontes</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Classificação temática</strong> automática por área de negócio e processo</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Mapeamento de frequência</strong> — temas mais recorrentes e referenciados</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Detecção de duplicidades</strong> — documentos sobrepostos ou conflitantes</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Identificação de gaps</strong> — processos sem cobertura documental</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Geração de sumários</strong> por cluster temático</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Priority Map v1.0</strong> — mapa priorizado de insights para os consultores</span></div>
+      <div class="rcard rai">
+        <h3><span class="rpill">AGENTE IA</span> &nbsp;Semana 1 · Fase Intent</h3>
+        <div class="ri"><div class="d"></div><span><strong>Ingestão e catalogação</strong> dos 1.250+ documentos das três fontes</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Classificação temática</strong> por área de negócio e processo</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Mapeamento de frequência</strong> — temas mais recorrentes e referenciados</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Detecção de duplicidades</strong> e documentos conflitantes</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Identificação de gaps</strong> — processos sem cobertura documental</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Priority Map v1.0</strong> — ranking priorizado de insights e gaps</span></div>
       </div>
-      <div class="role-card role-human">
-        <h3><span class="role-pill">TIME HUMANO</span> Semana 1–2</h3>
-        <div class="role-item"><div class="dot"></div><span><strong>Kickoff e alinhamento</strong> de escopo com stakeholders da NovaTech</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Revisão do Priority Map</strong> — validar relevância dos insights da IA</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Elaboração dos roteiros</strong> de entrevista com base no mapa da IA</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Condução das entrevistas</strong> com 6–8 stakeholders (Semana 2)</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Validação cruzada</strong> — confrontar achados da IA com percepção humana</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Priorização estratégica</strong> das dores de negócio (decisão humana)</span></div>
-        <div class="role-item"><div class="dot"></div><span><strong>Consolidação e entrega</strong> do Discovery Report executivo</span></div>
+      <div class="rcard rhum">
+        <h3><span class="rpill">TIME HUMANO</span> &nbsp;Semana 1–2</h3>
+        <div class="ri"><div class="d"></div><span><strong>Kickoff e alinhamento</strong> de escopo com stakeholders da NovaTech</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Revisão do Priority Map</strong> — validar relevância de negócio</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Elaboração dos roteiros</strong> de entrevista guiados pela IA</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Condução das entrevistas</strong> com 6–8 stakeholders</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Validação cruzada</strong> e priorização estratégica das dores</span></div>
+        <div class="ri"><div class="d"></div><span><strong>Discovery Report</strong> e apresentação executiva final</span></div>
       </div>
     </div>
-
-    <!-- DEPENDENCY ARROW -->
-    <div class="dep-arrow" style="margin-top:7px;">
+    <div class="dep" style="margin-top:5px;">
       <span class="arr">→</span>
-      <span><strong>Dependência crítica:</strong> o time humano só inicia as entrevistas após receber e validar o Priority Map gerado pela IA. A qualidade do Discovery humano depende diretamente da profundidade da análise automatizada da Semana 1.</span>
+      <span><strong>Dependência crítica:</strong> as entrevistas só iniciam após validação do Priority Map (Dia 5, tarde). A profundidade da análise automatizada da Semana 1 determina diretamente a qualidade do Discovery humano.</span>
     </div>
   </div>
 
-  <!-- PREREQUISITES -->
+  <!-- ── SCHEDULE ── -->
   <div>
-    <div class="section-title">Matriz de Pré-requisitos — O que a NovaTech precisa fornecer</div>
-    <table class="prereq-table">
+    <div class="sec">Cronograma — Dia a Dia</div>
+    <table class="st">
       <thead>
         <tr>
-          <th style="width:34%">Pré-requisito</th>
-          <th style="width:11%">Tipo</th>
-          <th style="width:22%">Momento crítico</th>
-          <th style="width:33%">Contato / Responsável</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Acesso de leitura ao SharePoint (credencial de serviço ou token de API)</td>
-          <td><span class="type-tag tag-tecnico">Técnico</span></td>
-          <td><span class="critical-day">Dia 1 — manhã</span></td>
-          <td>Gestor de TI / Infraestrutura</td>
-        </tr>
-        <tr>
-          <td>Token de API do Confluence com permissão de leitura nos espaços relevantes</td>
-          <td><span class="type-tag tag-tecnico">Técnico</span></td>
-          <td><span class="critical-day">Dia 1 — manhã</span></td>
-          <td>Gestor de TI / Atlassian Admin</td>
-        </tr>
-        <tr>
-          <td>Exportação ou acesso às 50 planilhas (.xlsx) via pasta compartilhada</td>
-          <td><span class="type-tag tag-dados">Dados</span></td>
-          <td><span class="critical-day">Dia 1 — tarde</span></td>
-          <td>Responsável da área proprietária</td>
-        </tr>
-        <tr>
-          <td>Responsável técnico (TI) disponível para resolver bloqueios de acesso</td>
-          <td><span class="type-tag tag-pessoas">Pessoas</span></td>
-          <td>Dias 1–2 (suporte ativo)</td>
-          <td>Ponto focal de TI</td>
-        </tr>
-        <tr>
-          <td>Lista de stakeholders para entrevistas (nome, cargo, área e e-mail)</td>
-          <td><span class="type-tag tag-pessoas">Pessoas</span></td>
-          <td><span class="critical-day">Dia 3</span></td>
-          <td>Gerente do Projeto (NovaTech)</td>
-        </tr>
-        <tr>
-          <td>Confirmação de agenda: 6–8 slots de 1h para entrevistas na Semana 2</td>
-          <td><span class="type-tag tag-pessoas">Pessoas</span></td>
-          <td><span class="critical-day">Dia 5</span></td>
-          <td>Gerente do Projeto (NovaTech)</td>
-        </tr>
-        <tr>
-          <td>Sponsor ou Product Owner disponível para sessão de priorização estratégica</td>
-          <td><span class="type-tag tag-decisao">Decisão</span></td>
-          <td>Dia 9 (2h bloqueadas)</td>
-          <td>Diretor de Operações / Sponsor</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <span>Projeto: <strong>Assistente de IA NovaTech</strong> · Plano de Discovery v1.0 · Junho 2026</span>
-    <span>CONFIDENCIAL — Uso interno · Página 1 de 2</span>
-  </div>
-
-</div><!-- /page 1 -->
-
-
-<!-- ══════════════════ PAGE 2 ══════════════════ -->
-<div class="page">
-
-  <!-- HEADER (menor) -->
-  <div class="header" style="padding: 10px 18px;">
-    <div>
-      <h1 style="font-size:15px;">Cronograma de 2 Semanas</h1>
-      <p>NovaTech · Discovery AI First · Detalhamento dia a dia</p>
-    </div>
-    <div class="legend">
-      <div class="legend-item"><span class="pill-ai">Agente IA</span></div>
-      <div class="legend-item"><span class="pill-human">Humano</span></div>
-      <div class="legend-item"><span class="pill-both">Conjunto</span></div>
-    </div>
-  </div>
-
-  <!-- SCHEDULE NOTE -->
-  <div class="sched-note">
-    <strong>Princípio de sequenciamento:</strong> A Semana 1 é controlada pelos agentes de IA (fase Intent). O time humano atua em paralelo apenas em atividades de setup e alinhamento. A Semana 2 é liderada pelos consultores, que operam sobre os insights já processados e priorizados pela IA.
-  </div>
-
-  <!-- SCHEDULE TABLE -->
-  <div>
-    <table class="sched-table">
-      <thead>
-        <tr>
-          <th style="width:13%">Período</th>
-          <th style="width:36%">Atividade</th>
+          <th style="width:11%">Período</th>
+          <th style="width:52%">Atividade</th>
           <th style="width:13%">Responsável</th>
-          <th style="width:22%">Entregável</th>
-          <th style="width:16%">Dependência</th>
+          <th style="width:24%">Entregável</th>
         </tr>
       </thead>
       <tbody>
 
-        <!-- WEEK 1 -->
-        <tr class="week-header week1-header">
-          <td colspan="5">🤖 &nbsp;SEMANA 1 — Fase Intent (IA) &nbsp;·&nbsp; Processamento Automatizado da Base Documental</td>
-        </tr>
+        <tr class="wh wh1"><td colspan="4">🤖 &nbsp;SEMANA 1 — Fase Intent · Processamento Automatizado da Base Documental</td></tr>
 
         <tr class="row-odd">
-          <td><strong>Dia 1</strong><br><span style="color:#888;font-size:8px;">Manhã</span></td>
-          <td>Kickoff do projeto, alinhamento de escopo e configuração dos acessos nos ambientes</td>
-          <td><span class="pill-both">Conjunto</span></td>
-          <td class="deliverable">Ambiente configurado e acessos validados</td>
-          <td><span class="dep-chip">Pré-req. Dia 1</span></td>
+          <td><span class="day-label">Dia 1</span></td>
+          <td>Kickoff do projeto, alinhamento de escopo e setup dos acessos aos ambientes</td>
+          <td><span class="pboth">Conjunto</span></td>
+          <td class="deliv">Ambiente configurado</td>
         </tr>
-
         <tr class="row-even">
-          <td><strong>Dia 1</strong><br><span style="color:#888;font-size:8px;">Tarde</span></td>
-          <td>Início da ingestão automatizada: SharePoint (800 docs) + planilhas (50 arquivos)</td>
-          <td><span class="pill-ai">Agente IA</span></td>
-          <td class="deliverable">Pipeline de ingestão ativo</td>
-          <td><span class="dep-chip">Acessos liberados</span></td>
+          <td><span class="day-label">Dia 2</span></td>
+          <td>Ingestão do Confluence (~400 páginas) e indexação completa do corpus documental</td>
+          <td><span class="pai">Agente IA</span></td>
+          <td class="deliv">Índice completo (1.250+ docs)</td>
         </tr>
-
         <tr class="row-odd">
-          <td><strong>Dia 2</strong></td>
-          <td>Ingestão do Confluence (~400 páginas) e indexação completa de todo o corpus</td>
-          <td><span class="pill-ai">Agente IA</span></td>
-          <td class="deliverable">Índice documental completo (1.250+ docs)</td>
-          <td><span class="dep-chip">Token Confluence</span></td>
+          <td><span class="day-label">Dia 3</span></td>
+          <td>Classificação temática automática + mapeamento de frequência por processo e área</td>
+          <td><span class="pai">Agente IA</span></td>
+          <td class="deliv">Mapa de temas e clusters</td>
         </tr>
-
         <tr class="row-even">
-          <td><strong>Dia 3</strong></td>
-          <td>Classificação temática automática e mapeamento de frequência por processo/área</td>
-          <td><span class="pill-ai">Agente IA</span></td>
-          <td class="deliverable">Mapa de temas e clusters prioritários</td>
-          <td><span class="dep-chip">Índice concluído</span></td>
+          <td><span class="day-label">Dia 4</span></td>
+          <td>Detecção de duplicidades, inconsistências entre documentos e gaps de cobertura</td>
+          <td><span class="pai">Agente IA</span></td>
+          <td class="deliv">Relatório de inconsistências</td>
         </tr>
+        <tr class="row-odd">
+          <td><span class="day-label">Dia 5<span class="day-sub">Manhã</span></span></td>
+          <td>Geração do Priority Map v1.0 — sumários por cluster, ranking de gaps e temas críticos consolidados</td>
+          <td><span class="pai">Agente IA</span></td>
+          <td class="deliv-key">⭐ Priority Map v1.0</td>
+        </tr>
+        <tr class="row-handoff">
+          <td><span class="day-label">Dia 5<span class="day-sub">Tarde</span></span></td>
+          <td><span class="handoff-badge">HANDOFF →</span> Revisão humana do Priority Map e elaboração dos roteiros de entrevista para a Semana 2</td>
+          <td><span class="phum">Humano</span></td>
+          <td class="deliv">Roteiros de entrevista prontos</td>
+        </tr>
+
+        <tr class="wh wh2"><td colspan="4">👥 &nbsp;SEMANA 2 — Discovery Humano · Entrevistas, Validação e Síntese</td></tr>
 
         <tr class="row-odd">
-          <td><strong>Dia 3</strong><br><span style="color:#888;font-size:8px;">Paralelo</span></td>
-          <td>Entrega da lista de stakeholders pela NovaTech + envio dos convites para Semana 2</td>
-          <td><span class="pill-human">Humano</span></td>
-          <td class="deliverable">Agenda de entrevistas confirmada</td>
-          <td><span class="dep-chip">Pré-req. Dia 3</span></td>
+          <td><span class="day-label">Dias 6–7</span></td>
+          <td>Rodada 1 de entrevistas (3–4 stakeholders, 1h cada) — foco nos temas críticos identificados pela IA</td>
+          <td><span class="phum">Humano</span></td>
+          <td class="deliv">Notas e gravações · Bloco 1</td>
         </tr>
-
         <tr class="row-even">
-          <td><strong>Dia 4</strong></td>
-          <td>Detecção de duplicidades, inconsistências e contradições entre documentos</td>
-          <td><span class="pill-ai">Agente IA</span></td>
-          <td class="deliverable">Relatório de inconsistências e sobreposições</td>
-          <td><span class="dep-chip">Classificação OK</span></td>
+          <td><span class="day-label">Dias 7–8</span></td>
+          <td>Rodada 2 de entrevistas (3–4 stakeholders) — foco nos gaps e contradições mapeados</td>
+          <td><span class="phum">Humano</span></td>
+          <td class="deliv">Notas e gravações · Bloco 2</td>
         </tr>
-
         <tr class="row-odd">
-          <td><strong>Dia 5</strong><br><span style="color:#888;font-size:8px;">Manhã</span></td>
-          <td>Identificação de gaps documentais e geração de sumários por cluster temático</td>
-          <td><span class="pill-ai">Agente IA</span></td>
-          <td class="deliverable">Mapa de gaps + sumários por área</td>
-          <td><span class="dep-chip">Análise concluída</span></td>
+          <td><span class="day-label">Dia 8</span></td>
+          <td>Validação cruzada: confrontar achados das entrevistas com o Priority Map da IA</td>
+          <td><span class="phum">Humano</span></td>
+          <td class="deliv">Insights validados</td>
         </tr>
-
         <tr class="row-even">
-          <td><strong>Dia 5</strong><br><span style="color:#888;font-size:8px;">Tarde</span></td>
-          <td>Geração do Priority Map v1.0: ranking priorizado de insights, gaps e temas críticos</td>
-          <td><span class="pill-ai">Agente IA</span></td>
-          <td class="deliverable" style="color:#0f3460;">⭐ Priority Map v1.0</td>
-          <td><span class="dep-chip">Todos os outputs IA</span></td>
+          <td><span class="day-label">Dia 9</span></td>
+          <td>Sessão de priorização estratégica com Sponsor/PO — definir escopo e dores prioritárias do assistente</td>
+          <td><span class="pboth">Conjunto</span></td>
+          <td class="deliv">Backlog priorizado</td>
         </tr>
-
         <tr class="row-odd">
-          <td><strong>Dia 5</strong><br><span style="color:#888;font-size:8px;">Fim do dia</span></td>
-          <td>Revisão do Priority Map pelos consultores e elaboração dos roteiros de entrevista</td>
-          <td><span class="pill-human">Humano</span></td>
-          <td class="deliverable">Roteiros de entrevista prontos</td>
-          <td><span class="dep-chip">Priority Map v1.0</span></td>
-        </tr>
-
-        <!-- WEEK 2 -->
-        <tr class="week-header week2-header">
-          <td colspan="5">👥 &nbsp;SEMANA 2 — Discovery Humano &nbsp;·&nbsp; Entrevistas, Validação e Síntese</td>
-        </tr>
-
-        <tr class="row-odd">
-          <td><strong>Dias 6–7</strong></td>
-          <td>Rodada 1 de entrevistas com stakeholders (3–4 pessoas, 1h cada) — foco em processos críticos identificados pela IA</td>
-          <td><span class="pill-human">Humano</span></td>
-          <td class="deliverable">Notas e gravações — Bloco 1</td>
-          <td><span class="dep-chip">Roteiros prontos</span></td>
-        </tr>
-
-        <tr class="row-even">
-          <td><strong>Dias 7–8</strong></td>
-          <td>Rodada 2 de entrevistas com stakeholders (3–4 pessoas, 1h cada) — foco em gaps e contradições mapeados pela IA</td>
-          <td><span class="pill-human">Humano</span></td>
-          <td class="deliverable">Notas e gravações — Bloco 2</td>
-          <td><span class="dep-chip">Roteiros prontos</span></td>
-        </tr>
-
-        <tr class="row-odd">
-          <td><strong>Dia 8</strong><br><span style="color:#888;font-size:8px;">Tarde</span></td>
-          <td>Validação cruzada: confrontar achados das entrevistas com o Priority Map da IA — confirmar, refutar ou complementar</td>
-          <td><span class="pill-human">Humano</span></td>
-          <td class="deliverable">Insights validados e anotados</td>
-          <td><span class="dep-chip">Entrevistas concluídas</span></td>
-        </tr>
-
-        <tr class="row-even">
-          <td><strong>Dia 9</strong></td>
-          <td>Sessão de priorização estratégica com Sponsor/PO: definir dores prioritárias e escopo do assistente de IA</td>
-          <td><span class="pill-both">Conjunto</span></td>
-          <td class="deliverable">Backlog priorizado de oportunidades</td>
-          <td><span class="dep-chip">Pré-req. Dia 9</span></td>
-        </tr>
-
-        <tr class="row-odd">
-          <td><strong>Dia 10</strong><br><span style="color:#888;font-size:8px;">Manhã</span></td>
-          <td>Consolidação final: redação do Discovery Report com todos os achados e recomendações</td>
-          <td><span class="pill-human">Humano</span></td>
-          <td class="deliverable">Discovery Report (rascunho final)</td>
-          <td><span class="dep-chip">Priorização OK</span></td>
-        </tr>
-
-        <tr class="row-even">
-          <td><strong>Dia 10</strong><br><span style="color:#888;font-size:8px;">Tarde</span></td>
-          <td>Apresentação executiva dos resultados do Discovery para a diretoria da NovaTech</td>
-          <td><span class="pill-human">Humano</span></td>
-          <td class="deliverable" style="color:#06a77d;">✅ Entrega final</td>
-          <td><span class="dep-chip">Discovery Report</span></td>
+          <td><span class="day-label">Dia 10</span></td>
+          <td>Consolidação do Discovery Report + apresentação executiva dos resultados para a diretoria</td>
+          <td><span class="phum">Humano</span></td>
+          <td class="deliv-final">✅ Entrega final</td>
         </tr>
 
       </tbody>
     </table>
   </div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <span>Projeto: <strong>Assistente de IA NovaTech</strong> · Plano de Discovery v1.0 · Junho 2026</span>
-    <span>CONFIDENCIAL — Uso interno · Página 2 de 2</span>
+  <!-- ── PREREQUISITES BY WEEK ── -->
+  <div>
+    <div class="sec">Pré-requisitos do Cliente — por Semana</div>
+    <div class="prereq-grid">
+
+      <!-- SEMANA 1 -->
+      <div class="pcard pcard-s1">
+        <div class="pcard-header">🤖 &nbsp;Semana 1 — antes do Dia 1</div>
+        <table class="pt">
+          <tbody>
+            <tr>
+              <td style="width:60%">Acesso de leitura ao SharePoint (token de API ou credencial de serviço)</td>
+              <td style="width:22%"><span class="crit">Dia 1 · manhã</span></td>
+              <td style="width:18%"><span class="ttag t-tec">Técnico</span></td>
+            </tr>
+            <tr>
+              <td>Token de API do Confluence com leitura nos espaços relevantes</td>
+              <td><span class="crit">Dia 1 · manhã</span></td>
+              <td><span class="ttag t-tec">Técnico</span></td>
+            </tr>
+            <tr>
+              <td>50 planilhas .xlsx via pasta compartilhada ou link de acesso direto</td>
+              <td><span class="crit">Dia 1 · tarde</span></td>
+              <td><span class="ttag t-dados">Dados</span></td>
+            </tr>
+            <tr>
+              <td>Ponto focal de TI disponível para resolver bloqueios de acesso</td>
+              <td>Dias 1–2</td>
+              <td><span class="ttag t-pess">Pessoas</span></td>
+            </tr>
+            <tr>
+              <td>Lista de stakeholders para entrevistas (nome, cargo, área, e-mail)</td>
+              <td><span class="crit">Dia 3</span></td>
+              <td><span class="ttag t-pess">Pessoas</span></td>
+            </tr>
+            <tr>
+              <td>Confirmação de 6–8 slots de 1h para entrevistas na Semana 2</td>
+              <td><span class="crit">Dia 5</span></td>
+              <td><span class="ttag t-pess">Pessoas</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SEMANA 2 -->
+      <div class="pcard pcard-s2">
+        <div class="pcard-header">👥 &nbsp;Semana 2 — antes do Dia 6</div>
+        <table class="pt">
+          <tbody>
+            <tr>
+              <td style="width:60%">Stakeholders disponíveis nos horários confirmados (1h cada, sem cancelamentos)</td>
+              <td style="width:22%"><span class="crit">Dias 6–8</span></td>
+              <td style="width:18%"><span class="ttag t-pess">Pessoas</span></td>
+            </tr>
+            <tr>
+              <td>Sala ou link de videoconferência reservado para todas as entrevistas</td>
+              <td><span class="crit">Dia 6</span></td>
+              <td><span class="ttag t-tec">Técnico</span></td>
+            </tr>
+            <tr>
+              <td>Sponsor / PO disponível para sessão de priorização estratégica (2h bloqueadas)</td>
+              <td><span class="crit">Dia 9</span></td>
+              <td><span class="ttag t-dec">Decisão</span></td>
+            </tr>
+            <tr>
+              <td>Slot reservado na agenda da diretoria para apresentação dos resultados finais</td>
+              <td><span class="crit">Dia 10</span></td>
+              <td><span class="ttag t-dec">Decisão</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 
-</div><!-- /page 2 -->
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <span>Projeto: <strong>Assistente de IA NovaTech</strong> · Plano de Discovery v1.1 · Junho 2026</span>
+    <span>CONFIDENCIAL — Uso interno</span>
+  </div>
 
+</div>
 </body>
 </html>
