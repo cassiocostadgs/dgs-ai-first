@@ -201,7 +201,47 @@ DO NOT introduce any dependency (npm package, Azure service, or external API)
 
 DO NOT use the 12 documents flagged with pending Compliance contradictions
          as authoritative content in prompts, tests, or seeded data.
+
+DO NOT write code comments, commit messages, or PR descriptions in Portuguese.
+
+DO NOT write business status reports, stakeholder communications, or RFC
+         summaries in English.
 ```
+
+---
+
+### 6. Language Constraints
+
+The NovaTech project operates with a bilingual convention: **English** for all technical artifacts consumed or produced by agents and the development pipeline; **Portuguese** for all business-facing communication directed at human stakeholders.
+
+#### 6.1 English — Mandatory contexts
+
+- MUST write all source code, including inline comments, in English.
+- MUST write all commit messages in English, following the patterns defined in section 4.
+- MUST write all pull request titles, descriptions, and inline review comments in English.
+- MUST write all technical documentation under `/docs/` (ADRs, spec files, API references) in English.
+- MUST write all test descriptions, test file names, and assertion messages in English.
+
+#### 6.2 Portuguese — Mandatory contexts
+
+- MUST write all status reports directed at business stakeholders in Portuguese.
+- MUST write all RFC (Request for Change) summaries and business justification fields in Portuguese.
+- MUST write all communications addressed to the NovaTech client (meeting notes, delivery reports, sprint reviews shared externally) in Portuguese.
+
+#### 6.3 Mixed-language artifacts
+
+Some artifacts contain both technical and business content. Apply the following rules:
+
+| Artifact | Technical sections | Business sections |
+|---|---|---|
+| RFC document | Title, impacted files, technical analysis → **English** | Business justification, stakeholder impact, DM summary → **Portuguese** |
+| ADR | Full document → **English** | — |
+| `requirements.md` | Acceptance criteria, data constraints → **English** | User story narrative, business context → **Portuguese** |
+| `tasks.md` | Full document → **English** | — |
+| Sprint report (DM) | Full document → **Portuguese** | — |
+
+- DO NOT mix languages within a single section of a document. If a section is defined as English, every sentence in it MUST be in English, including examples and annotations.
+- SHOULD flag to a human reviewer any auto-generated content where the language assignment is ambiguous before committing the file.
 
 ---
 
