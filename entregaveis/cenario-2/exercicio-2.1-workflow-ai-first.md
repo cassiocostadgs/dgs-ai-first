@@ -147,7 +147,7 @@ A tabela abaixo mapeia cada papel às ferramentas de IA permitidas em cada etapa
 | **Quem aprova** | QA (sign-off de qualidade) + Tech Lead (ratificação técnica) |
 | **O que verifica** | (1) **Documentos contraditórios:** existe ao menos 1 teste automatizado que simula dois documentos com mesmo tema e vigências diferentes e verifica que a resposta prioriza o mais recente. (2) **Budget de contexto:** existe teste de boundary que envia um payload acima do limite e verifica tratamento adequado (erro explícito ou truncamento controlado). (3) **Chunks:** teste de integração com Azure AI Search confirma que o número de chunks retornados não excede 5. (4) **Teams bot:** fluxo completo (mensagem recebida → consulta RAG → resposta entregue no Teams) executado em staging. (5) **Bicep:** templates executados com sucesso em ambiente de staging, não apenas validados com lint. (6) Os 12 documentos com contradição pendente não são usados como "ground truth" em nenhum teste (risco de falso positivo/negativo). |
 | **Tempo limite** | **12 horas** após entrega do relatório de testes pelo QA. |
-| **Se reprovar** | QA registra gap no Azure DevOps como bug com severity alta, vinculado à task de implementação. Feature retorna para a etapa de Implement. Dev corrige o código ou adiciona o teste faltante. Pipeline de CI deve ser reexecutado integralmente antes de novo Gate 4. Deploy bloqueado até aprovação. |
+| **Se reprovar** | QA registra gap no Azure DevOps como bug em um workitem com severity alta, vinculado à task de implementação. Feature retorna para a etapa de Implement. Dev corrige o código ou adiciona o teste faltante. Pipeline de CI deve ser reexecutado integralmente antes de novo Gate 4. Deploy bloqueado até aprovação. |
 
 ---
 
