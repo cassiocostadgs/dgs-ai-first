@@ -2,10 +2,12 @@
   "permissions": {
     "allow": [
       "Read(//c/Users/cassio.costa/.claude/projects/**)",
-      "Bash(mkdir -p \"c:\\\\Users\\\\cassio.costa\\\\OneDrive - DB1 Group\\\\AI First\\\\Semana 4 - DGS\\\\Codebase\\\\dgs-ai-first\\\\cenario-2\")"
+      "Bash(mkdir -p \"c:\\\\Users\\\\cassio.costa\\\\OneDrive - DB1 Group\\\\AI First\\\\Semana 4 - DGS\\\\Codebase\\\\dgs-ai-first\\\\cenario-2\")",
+      "Bash(mkdir -p \"c:\\\\Users\\\\cassio.costa\\\\OneDrive - DB1 Group\\\\AI First\\\\Semana 4 - DGS\\\\Codebase\\\\dgs-ai-first\\\\entregaveis\\\\cenario-2\")"
     ],
     "additionalDirectories": [
-      "c:\\Users\\cassio.costa\\OneDrive - DB1 Group\\AI First\\Semana 4 - DGS\\Codebase\\dgs-ai-first"
+      "c:\\Users\\cassio.costa\\OneDrive - DB1 Group\\AI First\\Semana 4 - DGS\\Codebase\\dgs-ai-first",
+      "c:\\Users\\cassio.costa\\OneDrive - DB1 Group\\AI First\\Semana 4 - DGS\\Codebase\\dgs-ai-first\\entregaveis\\cenario-2"
     ]
-  } 
+  }
 }
