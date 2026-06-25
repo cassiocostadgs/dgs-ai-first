@@ -6,7 +6,7 @@
 
 ---
 
-## Área 1 — Coordenação do Assistente
+## Área 1 — Coordenação do Assistente (Tool Orchestration)
 *Como o assistente busca informações e entrega respostas*
 
 **Por que isso importa:** Durante os testes internos, 12% das respostas estavam erradas. Uma parte desses erros vem de o assistente buscar trechos de documentos errados ou desatualizados. Estes critérios garantem que a busca seja confiável antes do go-live.
@@ -20,7 +20,7 @@
 
 ---
 
-## Área 2 — Verificação Automática das Respostas
+## Área 2 — Verificação Automática das Respostas (Verification Loops)
 *Garantia de que nenhuma resposta sem fonte chega ao atendente*
 
 **Por que isso importa:** Um dos problemas identificados é que o assistente pode gerar respostas sem citar a fonte do documento. Estes critérios criam uma camada automática que descarta qualquer resposta incompleta antes de ela ser exibida.
@@ -34,7 +34,7 @@
 
 ---
 
-## Área 3 — Atualização da Base de Conhecimento
+## Área 3 — Atualização da Base de Conhecimento (Contexto e Memória)
 *Garantia de que o assistente sempre consulta documentos vigentes*
 
 **Por que isso importa:** Parte dos erros nos testes veio de o assistente citar versões antigas de documentos. Estes critérios garantem que a base de conhecimento esteja sempre atualizada.
@@ -47,7 +47,7 @@
 
 ---
 
-## Área 4 — Proteções e Limites do Assistente
+## Área 4 — Proteções e Limites do Assistente (Guardrails)
 *Controles que evitam respostas incorretas e protegem os dados dos atendentes*
 
 **Por que isso importa:** Sem proteções, o assistente pode entregar respostas de baixa qualidade sem nenhuma revisão humana, responder sobre assuntos fora do seu escopo e expor dados dos atendentes indevidamente. Estes são os critérios de maior risco do projeto.
@@ -56,12 +56,12 @@
 |---|--------------------------------|--------------|
 | 4.1 | **Ponto de revisão humana obrigatório:** Quando o assistente gerar uma resposta com nível de confiança abaixo de 70%, essa resposta não é entregue diretamente ao atendente. Ela vai para uma fila de revisão visível aos 5 atendentes-piloto, que têm 30 minutos para aprovar, editar ou descartar. Enquanto aguarda, o usuário vê a mensagem: *"Consultando um especialista, aguarde."* Se nenhum atendente revisar dentro de 30 minutos, o sistema envia automaticamente uma mensagem de encaminhamento para o time humano. | **[BLOQUEANTE]** |
 | 4.2 | O assistente deve responder apenas dentro do escopo para o qual foi treinado. Perguntas sobre assuntos fora desse escopo (como orientação jurídica, médica ou financeira de alta complexidade) devem receber automaticamente uma mensagem de encaminhamento para o time humano — o assistente nunca tenta responder esses tópicos. Essa regra não pode ser alterada pelo usuário durante a conversa. | **[BLOQUEANTE]** |
-| 4.3 | Um módulo de registro de feedbacks foi desenvolvido com auxílio de IA e, durante a revisão, foram identificados dois problemas graves: ele não validava os dados recebidos e armazenava informações pessoais dos atendentes de forma exposta. Esse módulo deve ser corrigido e aprovado pelo responsável técnico antes do go-live. | **[BLOQUEANTE]** |
+| 4.3 | Um módulo de registro de feedbacks foi desenvolvido com auxílio de IA e, durante a revisão, foram identificados dois problemas graves: ele não validava os dados recebidos e armazenava informações pessoais dos atendentes de forma exposta. Esse módulo deve ser corrigido e aprovado pelo responsável técnico antes do go-live — conforme as regras do AGENTS.md e os guardrails de produto do Cenário 2 (DEVE / NÃO DEVE / QUANDO EM DÚVIDA). | **[BLOQUEANTE]** |
 | 4.4 | Cada atendente pode fazer no máximo 20 perguntas por hora ao assistente. Isso evita que um uso intenso por uma pessoa prejudique o serviço para os demais atendentes-piloto. | **[DESEJÁVEL]** |
 
 ---
 
-## Área 5 — Monitoramento em Produção
+## Área 5 — Monitoramento em Produção (Observability)
 *Visibilidade para saber em tempo real se o assistente está funcionando bem*
 
 **Por que isso importa:** Sem monitoramento, qualquer problema em produção só será descoberto quando um atendente reclamar. Estes critérios garantem que o time técnico veja os problemas antes dos usuários.
@@ -69,6 +69,6 @@
 | # | O que precisa estar funcionando | Classificação |
 |---|--------------------------------|--------------|
 | 5.1 | Antes do go-live, deve estar ativo um painel de monitoramento em tempo real mostrando: volume de perguntas, nível médio de confiança das respostas, fila de revisão humana, taxa de respostas bloqueadas, tempo de resposta e taxa de erros. Visível para o Delivery Manager e o responsável técnico. | **[BLOQUEANTE]** |
-| 5.2 | Todos os registros de interação devem seguir as regras de privacidade: nenhum dado pessoal do atendente (nome, e-mail, texto da pergunta sem tratamento) pode ser armazenado de forma exposta. O time de QA deve auditar esse ponto antes do go-live. | **[BLOQUEANTE]** |
+| 5.2 | Todos os registros de interação devem seguir as regras de privacidade: nenhum dado pessoal do atendente (nome, e-mail, texto da pergunta sem tratamento) pode ser armazenado de forma exposta. O time de QA deve auditar esse ponto antes do go-live, conforme as regras do AGENTS.md e os guardrails de produto do Cenário 2 (DEVE / NÃO DEVE / QUANDO EM DÚVIDA). | **[BLOQUEANTE]** |
 | 5.3 | Alertas automáticos devem ser configurados: se a taxa de respostas bloqueadas ultrapassar 10% ou a taxa de erros ultrapassar 15% em qualquer janela de 15 minutos, o time técnico recebe uma notificação automática no canal do Teams. Isso não pode depender de alguém estar olhando o painel manualmente. | **[BLOQUEANTE]** |
 | 5.4 | O sistema deve registrar o caminho completo de cada interação — da pergunta do atendente até a resposta entregue — para que em caso de incidente a equipe consiga identificar exatamente onde ocorreu o problema. A ser implementado após a demo. | **[DESEJÁVEL]** |

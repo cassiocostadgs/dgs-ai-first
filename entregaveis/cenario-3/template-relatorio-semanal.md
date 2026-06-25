@@ -17,7 +17,7 @@
 
 | Dimensão | Métrica | Valor Atual | Meta | vs. Semana Anterior | Tendência |
 |----------|---------|-------------|------|---------------------|-----------|
-| **Uso** | Queries/dia (média) | [N] | > 30/dia | [+N / -N] | [▲ / ▼ / ▬] |
+| **Uso** | Perguntas por dia (média) | [N] | > 30/dia | [+N / -N] | [▲ / ▼ / ▬] |
 | **Uso** | Atendentes ativos/dia | [N] / 5 | 5/5 | [+N / -N] | [▲ / ▼ / ▬] |
 | **Qualidade** | Taxa de feedback negativo | [X]% | < 10% | [+X% / -X%] | [▲ / ▼ / ▬] |
 | **Qualidade** | Taxa de escalação para revisão humana | [X]% | < 20% | [+X% / -X%] | [▲ / ▼ / ▬] |
@@ -56,12 +56,12 @@
 
 | # | Ação | Categoria | Responsável | Prazo | KPI Impactado |
 |---|------|-----------|-------------|-------|---------------|
-| 1 | [Ex: Re-ingestão do documento "Política de Crédito v3"] | Conteúdo | Tech Lead | [DD/MM] | Documentos desatualizados |
+| 1 | [Ex: Atualização do documento "Política de Crédito v3" na base de conhecimento] | Conteúdo | Tech Lead | [DD/MM] | Documentos desatualizados |
 | 2 | [Ex: Ajuste do limiar de revisão humana de 70% → 75%] | Proteções | Tech Lead | [DD/MM] | Taxa de escalação |
 | 3 | [Ex: Criação de documento sobre Tema 1 identificado] | Conteúdo | Product Specialist | [DD/MM] | Perguntas sem resposta |
 | 4 | [Ex: Revisão dos exemplos de resposta para reduzir alucinação] | Qualidade | Tech Lead + QA | [DD/MM] | Taxa de feedback negativo |
 
 ---
 
-*Relatório gerado automaticamente a partir dos logs de observabilidade toda segunda-feira às 8h.
+*Relatório gerado automaticamente a partir dos registros de monitoramento toda segunda-feira às 8h.
 Revisado e aprovado por: [Nome] — [DD/MM/AAAA]*

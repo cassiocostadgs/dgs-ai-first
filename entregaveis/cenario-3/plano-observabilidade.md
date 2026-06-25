@@ -19,6 +19,7 @@
 | Indicador | O que mede | Frequência |
 |-----------|-----------|------------|
 | Taxa de avaliações negativas | % de respostas que o atendente marcou como "incorreta" ou "ruim" | Diária |
+| Cobertura de feedback | % de respostas que receberam alguma avaliação do atendente (positiva ou negativa) — a taxa de avaliações negativas só é confiável quando o volume de feedback no período é suficiente | Diária |
 | Taxa de respostas enviadas para revisão humana | % de respostas que o assistente não teve confiança suficiente para entregar sozinho e foram para revisão de um atendente | Diária |
 | Taxa de aprovação nas revisões | Das respostas que foram para revisão humana, quantas % foram aprovadas sem alteração | Semanal |
 | Taxa de "não sei responder" | % de perguntas em que o assistente não encontrou nenhuma informação relevante na base e respondeu "não encontrado" | Diária |
@@ -28,7 +29,7 @@
 
 | Indicador | O que mede | Frequência |
 |-----------|-----------|------------|
-| Tempo de resposta (P95) | O tempo que 95% das perguntas levam para ser respondidas, do início ao fim | Contínua |
+| Tempo de resposta (para 95% das perguntas) | O tempo que 95% das perguntas levam para ser respondidas, do início ao fim | Contínua |
 | Tempo de busca na base de documentos | Quanto tempo leva só a parte de buscar a informação nos documentos | Contínua |
 | Tempo de geração da resposta | Quanto tempo leva só a parte de o assistente redigir a resposta | Contínua |
 | Taxa de respostas bloqueadas por formato inválido | % de respostas que o sistema descartou automaticamente por não virem com todos os campos obrigatórios (fonte, nível de confiança etc.) | Contínua |
@@ -92,7 +93,7 @@ Se houver mais de 20 respostas aguardando revisão de atendente ao mesmo tempo, 
 
 ## C. Como um erro vira uma melhoria
 
-O fluxo abaixo mostra o caminho completo desde o momento em que um atendente avalia uma resposta como incorreta até a correção ser publicada no assistente.
+O fluxo abaixo mostra o caminho completo desde o momento em que um atendente avalia uma resposta como incorreta até a correção ser publicada no assistente. O registro de cada interação segue as regras de privacidade do AGENTS.md e os guardrails de produto do Cenário 2 (DEVE / NÃO DEVE / QUANDO EM DÚVIDA).
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -159,6 +160,8 @@ O fluxo abaixo mostra o caminho completo desde o momento em que um atendente ava
 │    da semana seguinte como evidência de melhoria                   │
 └─────────────────────────────────────────────────────────────────────┘
 ```
+
+> **Plano B da triagem:** Se o QA não puder realizar a triagem das 9h, o backup designado assume. Se nenhum dos dois atuar em até 48 horas, o Delivery Manager é alertado automaticamente para redistribuir a responsabilidade.
 
 **Tempo médio esperado — do erro à correção publicada:**
 - Documento desatualizado ou trecho errado: **3 a 5 dias úteis**

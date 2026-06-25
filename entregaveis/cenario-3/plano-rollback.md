@@ -40,11 +40,11 @@ A autorização é verbal ou via mensagem no canal do Teams do time. Não exige 
 Teams Admin Center → Manage apps → DGS AI Assistant → Status: Blocked
 ```
 
-Efeito imediato: bot some do Teams para todos os atendentes-piloto. Nenhuma query nova é processada. Nenhum dado é perdido.
+Efeito imediato: bot some do Teams para todos os atendentes-piloto. Nenhuma pergunta nova é processada. Nenhum dado é perdido.
 
 ---
 
-### Passo 2 — Reverter o endpoint para a última tag estável (< 5 minutos)
+### Passo 2 — Reverter o sistema para a última versão estável (< 5 minutos)
 
 ```bash
 # Identificar última tag estável
@@ -60,7 +60,7 @@ az webapp deployment source config-zip \
   --src ./releases/stable-<versão>.zip
 ```
 
-> Alternativa: redeployar a partir da última release tag aprovada diretamente pelo portal Azure DevOps, sem necessidade de acesso manual ao servidor.
+> Alternativa: reinstalar a partir da última versão aprovada diretamente pelo portal Azure DevOps, sem necessidade de acesso manual ao servidor.
 
 ---
 
@@ -85,7 +85,7 @@ Verificar no painel de monitoramento:
 
 Tech Lead documenta no repositório:
 - Trigger acionado
-- Root cause identificado
+- Causa raiz identificada
 - Fix aplicado
 - Critério objetivo de volta ao ar
 

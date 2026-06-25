@@ -3,7 +3,8 @@
     "allow": [
       "Read(//c/Users/cassio.costa/.claude/projects/**)",
       "Bash(mkdir -p \"c:\\\\Users\\\\cassio.costa\\\\OneDrive - DB1 Group\\\\AI First\\\\Semana 4 - DGS\\\\Codebase\\\\dgs-ai-first\\\\cenario-2\")",
-      "Bash(mkdir -p \"c:\\\\Users\\\\cassio.costa\\\\OneDrive - DB1 Group\\\\AI First\\\\Semana 4 - DGS\\\\Codebase\\\\dgs-ai-first\\\\entregaveis\\\\cenario-2\")"
+      "Bash(mkdir -p \"c:\\\\Users\\\\cassio.costa\\\\OneDrive - DB1 Group\\\\AI First\\\\Semana 4 - DGS\\\\Codebase\\\\dgs-ai-first\\\\entregaveis\\\\cenario-2\")",
+      "PowerShell(\\(Get-Item \"C:\\\\Users\\\\cassio.costa\\\\OneDrive - DB1 Group\\\\AI First\\\\Semana 4 - DGS\\\\Codebase\\\\dgs-ai-first\\\\entregaveis\\\\cenario-3\\\\export-conversa-2026-06-25.md\"\\).Length / 1KB)"
     ],
     "additionalDirectories": [
       "c:\\Users\\cassio.costa\\OneDrive - DB1 Group\\AI First\\Semana 4 - DGS\\Codebase\\dgs-ai-first",
