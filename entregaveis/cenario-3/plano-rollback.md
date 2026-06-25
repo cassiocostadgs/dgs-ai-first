@@ -8,13 +8,13 @@
 
 Condições que acionam **alerta automático** e notificação imediata ao Tech Lead e Delivery Manager:
 
-| ID | Trigger | Métrica | Threshold |
-|----|---------|---------|-----------|
-| T1 | Taxa de erro no endpoint | `error_rate` (HTTP 5xx em `/query`) | > 15% em janela de 15 min |
-| T2 | Falha de validação de schema | `schema_validation_failure_rate` | > 10% em janela de 15 min |
-| T3 | Fila HITL saturada | `hitl_queue_depth` (itens pendentes sem revisão) | > 30 itens acumulados |
-| T4 | Queda de qualidade generalizada | `avg_confidence_score` | < 0.55 em janela de 30 min |
-| T5 | Quebra de Structured Output | Bot retornando respostas sem campo `source_document` | Qualquer ocorrência confirmada |
+| ID | Sinal de alerta | O que medir | Quando acionar |
+|----|----------------|-------------|----------------|
+| T1 | Muitas perguntas resultando em erro do sistema | % de perguntas que o sistema não conseguiu responder por falha técnica | Acima de 15% em qualquer janela de 15 minutos |
+| T2 | Respostas chegando sem fonte ou incompletas | % de respostas descartadas automaticamente por estarem fora do formato obrigatório | Acima de 10% em qualquer janela de 15 minutos |
+| T3 | Fila de revisão humana travada | Número de respostas aguardando avaliação de atendente sem resposta | Acima de 30 itens acumulados sem resolução |
+| T4 | Queda generalizada na confiança das respostas | Nível médio de confiança do assistente em suas próprias respostas | Abaixo de 0,55 por mais de 30 minutos seguidos |
+| T5 | Respostas sendo entregues sem citar a fonte | Qualquer resposta enviada ao atendente sem o documento de origem | Qualquer ocorrência confirmada |
 
 Qualquer trigger ativo por mais de **10 minutos sem resolução** escala automaticamente para decisão de rollback.
 
@@ -66,10 +66,10 @@ az webapp deployment source config-zip \
 
 ### Passo 3 — Confirmar estabilização (aguardar 3 minutos após o revert)
 
-Verificar no dashboard de observability:
-- `error_rate` < 5%
-- `schema_validation_failure_rate` < 5%
-- Endpoint respondendo com HTTP 200 em health check
+Verificar no painel de monitoramento:
+- Taxa de erros do sistema abaixo de 5%
+- Taxa de respostas bloqueadas por formato inválido abaixo de 5%
+- Sistema respondendo normalmente às perguntas de teste
 
 ---
 

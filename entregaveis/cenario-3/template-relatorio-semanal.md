@@ -22,7 +22,7 @@
 | **Qualidade** | Taxa de feedback negativo | [X]% | < 10% | [+X% / -X%] | [▲ / ▼ / ▬] |
 | **Qualidade** | Taxa de escalação para revisão humana | [X]% | < 20% | [+X% / -X%] | [▲ / ▼ / ▬] |
 | **Qualidade** | Nível médio de confiança das respostas | [0.XX] | ≥ 0.75 | [+0.XX / -0.XX] | [▲ / ▼ / ▬] |
-| **Técnica** | Tempo de resposta P95 (ms) | [N] ms | < 3.000 ms | [+N / -N] | [▲ / ▼ / ▬] |
+| **Técnica** | Tempo de resposta (95% das perguntas) | [N] ms | < 3.000 ms | [+N / -N] | [▲ / ▼ / ▬] |
 | **Técnica** | Taxa de respostas bloqueadas por formato inválido | [X]% | < 5% | [+X% / -X%] | [▲ / ▼ / ▬] |
 | **Técnica** | Taxa de erros do sistema | [X]% | < 3% | [+X% / -X%] | [▲ / ▼ / ▬] |
 | **Conteúdo** | Perguntas sem resposta na base | [X]% | < 8% | [+X% / -X%] | [▲ / ▼ / ▬] |
