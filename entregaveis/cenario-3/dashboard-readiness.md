@@ -1,36 +1,37 @@
-# Dashboard de Readiness do Go-Live — NovaTech AI Assistant
+# Painel de Acompanhamento do Go-Live — Assistente de IA NovaTech
 
-> Snapshot: D-14 antes da demo. Status distribuídos com base nos problemas reportados e no estado atual do projeto.
+> **Referência:** 14 dias antes da demonstração para a diretoria.
+> Os status refletem o estado real do projeto com base nos problemas já identificados.
 
-| Camada do Harness | Critério de Go-Live | Classificação | Status Atual | Responsável | Data-Alvo |
-|-------------------|---------------------|---------------|--------------|-------------|-----------|
-| **Tool Orchestration** | Metadados `last_updated_at` indexados + flag `is_stale` no pipeline | BLOQUEANTE | 🔴 Vermelho | Tech Lead | D+5 |
-| **Tool Orchestration** | Endpoint retorna Structured Output JSON com schema fixo obrigatório | BLOQUEANTE | 🔴 Vermelho | Tech Lead | D+6 |
-| **Tool Orchestration** | Fallback explícito quando retrieval retorna zero chunks relevantes | BLOQUEANTE | 🟡 Amarelo | Tech Lead | D+7 |
-| **Tool Orchestration** | Retry com exponential backoff para falhas transitórias | DESEJÁVEL | 🟡 Amarelo | Tech Lead | D+10 |
-| **Verification Loops** | Validation loop via Zod pós-geração, descarte de respostas sem `source_document` | BLOQUEANTE | 🔴 Vermelho | Tech Lead | D+7 |
-| **Verification Loops** | Taxa `RESPONSE_VALIDATION_FAILED` < 5% em staging (24h window) | BLOQUEANTE | 🔴 Vermelho | QA | D+10 |
-| **Verification Loops** | Golden dataset (top-10 queries) com accuracy ≥ 85% | BLOQUEANTE | 🟡 Amarelo | QA + Product Specialist | D+9 |
-| **Verification Loops** | Self-consistency check para queries de alta sensibilidade | DESEJÁVEL | 🔴 Vermelho | Tech Lead | Pós-demo |
-| **Context & Memory** | Re-indexação incremental configurada, lag máximo 24h | BLOQUEANTE | 🟡 Amarelo | Tech Lead | D+5 |
-| **Context & Memory** | Auditoria e remoção/atualização de chunks `is_stale` | BLOQUEANTE | 🔴 Vermelho | Tech Lead + Product Specialist | D+8 |
-| **Context & Memory** | `document_date` no contexto enviado ao LLM | DESEJÁVEL | 🔴 Vermelho | Tech Lead | Pós-demo |
-| **Guardrails** | HITL ativo: respostas com `confidence_score < 0.70` vão para fila de revisão (SLA 30min) | BLOQUEANTE | 🔴 Vermelho | Tech Lead + Delivery Manager | D+8 |
-| **Guardrails** | Topic boundary hardcoded para tópicos fora de escopo | BLOQUEANTE | 🟡 Amarelo | Tech Lead + Product Specialist | D+7 |
-| **Guardrails** | Remediação do módulo de feedback (Zod + PII masking + AGENTS.md compliance) | BLOQUEANTE | 🔴 Vermelho | Tech Lead | D+4 |
-| **Guardrails** | Rate limiting 20 queries/hora por atendente no Teams | DESEJÁVEL | 🔴 Vermelho | Tech Lead | D+12 |
-| **Observability** | Dashboard de métricas em produção ativo antes do go-live | BLOQUEANTE | 🟡 Amarelo | Tech Lead + Delivery Manager | D+9 |
-| **Observability** | Logs em conformidade com AGENTS.md (sem PII, auditado pelo QA) | BLOQUEANTE | 🔴 Vermelho | QA | D+8 |
-| **Observability** | Alerta automático configurado (Teams channel) para anomalias | BLOQUEANTE | 🟡 Amarelo | Tech Lead | D+10 |
-| **Observability** | Trace distribuído (Application Insights / OpenTelemetry) | DESEJÁVEL | 🔴 Vermelho | Tech Lead | Pós-demo |
+| Área | O que precisa estar pronto | Classificação | Status | Responsável | Prazo |
+|------|---------------------------|---------------|--------|-------------|-------|
+| **Coordenação do Assistente** | Documentos da base registram data de atualização; trechos com mais de 180 dias são excluídos automaticamente | BLOQUEANTE | 🔴 Não iniciado | Tech Lead | D+5 |
+| **Coordenação do Assistente** | Toda resposta entregue obrigatoriamente inclui fonte do documento, nível de confiança e trechos utilizados | BLOQUEANTE | 🔴 Não iniciado | Tech Lead | D+6 |
+| **Coordenação do Assistente** | Quando não há conteúdo relevante na base, o assistente informa "não encontrado" em vez de inventar uma resposta | BLOQUEANTE | 🟡 Em andamento | Tech Lead | D+7 |
+| **Coordenação do Assistente** | Falhas temporárias de conexão acionam até 3 novas tentativas automáticas antes de retornar erro | DESEJÁVEL | 🟡 Em andamento | Tech Lead | D+10 |
+| **Verificação de Respostas** | Respostas sem campo de fonte são bloqueadas automaticamente antes de chegar ao atendente | BLOQUEANTE | 🔴 Não iniciado | Tech Lead | D+7 |
+| **Verificação de Respostas** | Taxa de respostas bloqueadas por esse filtro está abaixo de 5% no ambiente de testes (últimas 24h) | BLOQUEANTE | 🔴 Não iniciado | QA | D+10 |
+| **Verificação de Respostas** | As 10 perguntas mais frequentes têm resposta de referência definida; assistente acerta pelo menos 85% | BLOQUEANTE | 🟡 Em andamento | QA + Product Specialist | D+9 |
+| **Verificação de Respostas** | Para perguntas críticas, o sistema gera duas respostas e verifica se concordam antes de entregar | DESEJÁVEL | 🔴 Não iniciado | Tech Lead | Pós-demo |
+| **Base de Conhecimento** | Atualização de documentos na origem reflete na base em até 24 horas | BLOQUEANTE | 🟡 Em andamento | Tech Lead | D+5 |
+| **Base de Conhecimento** | Todos os trechos desatualizados foram revisados e corrigidos ou removidos da base | BLOQUEANTE | 🔴 Não iniciado | Tech Lead + Product Specialist | D+8 |
+| **Base de Conhecimento** | Respostas indicam a data do documento utilizado | DESEJÁVEL | 🔴 Não iniciado | Tech Lead | Pós-demo |
+| **Proteções e Limites** | Respostas com confiança abaixo de 70% vão para fila de revisão humana com prazo de 30 minutos | BLOQUEANTE | 🔴 Não iniciado | Tech Lead + Delivery Manager | D+8 |
+| **Proteções e Limites** | Perguntas fora do escopo do assistente recebem mensagem de encaminhamento automático para o time humano | BLOQUEANTE | 🟡 Em andamento | Tech Lead + Product Specialist | D+7 |
+| **Proteções e Limites** | Módulo de feedback corrigido: validação de dados e proteção de informações pessoais dos atendentes | BLOQUEANTE | 🔴 Não iniciado | Tech Lead | D+4 |
+| **Proteções e Limites** | Limite de 20 perguntas por hora por atendente para evitar sobrecarga do serviço | DESEJÁVEL | 🔴 Não iniciado | Tech Lead | D+12 |
+| **Monitoramento** | Painel de monitoramento em tempo real ativo antes do go-live | BLOQUEANTE | 🟡 Em andamento | Tech Lead + Delivery Manager | D+9 |
+| **Monitoramento** | Registros de interação auditados pelo QA: nenhum dado pessoal de atendente exposto | BLOQUEANTE | 🔴 Não iniciado | QA | D+8 |
+| **Monitoramento** | Alertas automáticos configurados: time recebe notificação no Teams sem precisar olhar o painel | BLOQUEANTE | 🟡 Em andamento | Tech Lead | D+10 |
+| **Monitoramento** | Rastreamento completo do caminho de cada interação para diagnóstico rápido de incidentes | DESEJÁVEL | 🔴 Não iniciado | Tech Lead | Pós-demo |
 
 ---
 
-## Resumo Executivo
+## Resumo para a Diretoria
 
-| Classificação | Total | 🔴 Vermelho | 🟡 Amarelo | 🟢 Verde |
-|---------------|-------|------------|-----------|---------|
+| Classificação | Total | 🔴 Não iniciado | 🟡 Em andamento | 🟢 Concluído |
+|---------------|-------|-----------------|-----------------|--------------|
 | BLOQUEANTE | 13 | 9 | 4 | 0 |
 | DESEJÁVEL | 6 | 4 | 2 | 0 |
 
-> **Alerta:** 9 critérios BLOQUEANTES em Vermelho representam risco crítico de go-live. Prioridade imediata: remediação do módulo de feedback (D+4) e implementação de Structured Output (D+6).
+> **Situação atual:** Nenhum critério bloqueante está concluído. Há 9 itens críticos ainda não iniciados, com prazo máximo de 10 dias para serem resolvidos. O item mais urgente é a **correção do módulo de feedback** (prazo D+4), pois envolve risco de privacidade de dados. O segundo item mais urgente é a **garantia de que toda resposta inclui a fonte do documento** (prazo D+6), que resolve diretamente o problema dos 12% de respostas incorretas identificado nos testes.
